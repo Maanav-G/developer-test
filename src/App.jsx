@@ -7,8 +7,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     padding-top: 1.5em;
-`
-
+`;
 const WishList = styled.div`
     width: 400px;
     height: 540px;
@@ -19,12 +18,10 @@ const WishList = styled.div`
     text-align: center;
     padding-top: 0.75em;
 `;
-
 const Title = styled.h3`
     text-transform: uppercase;
     letter-spacing: 1px;
 `;
-
 const ItemList = styled.div`
     width: 285px;
     height: 250px;
@@ -43,16 +40,14 @@ const ItemList = styled.div`
         }
     }
 `;
-
 const ItemInput = styled.input`
     width: 280px;
     height: 32px;
     border-radius: 2px;
     margin-bottom: 22px;
 `;
-
 const Button = styled.button`
-    width: ${props => props.size ? props.size : "10px"};
+    width: ${props => props.width ? props.width : "120px"};
     height: ${props => props.height ? props.height : "45px"};
     background-color: #90EB92;
     border-radius: 5px;
@@ -63,30 +58,34 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
-
-
 const App = (props) => {
     const [userInput, setUserInput] = useState("");
     function handleAdd() {
-        if (userInput.length == 0 || userInput == "") {
-            alert("ERROR\nInvalid Input - Empty String")
+        if (userInput.length === 0 || userInput === "") {
+            alert("Error\nInvalid Input - Empty String");
         } else if (props.wishList.includes(userInput)) {
-            alert("ERROR\nInvalid Input - Item Exists")
+            alert("Error\nInvalid Input - Item Exists");
             setUserInput("");
         } else {
             props.addItem(userInput);
             setUserInput("");
         }
-    }
+    };
     function handleDelete(listItem) {
         props.deleteItem(listItem);
-    }
+    };
     function handleSubmit() {
-        alert("Wish list submitted to Santa!")
-        for(var item in props.wishList) {
-            handleDelete(props.wishList[item]);
+        if(props.wishList.length > 0){
+            alert("Wish list submitted to Santa!");
+            for (var item in props.wishList) {
+                handleDelete(props.wishList[item]);
+            }
+        } else {
+            alert("Error\nInvalid Wish list - Empty List");
         }
-    }
+
+
+    };
     return (
         <Container>
             <WishList>
@@ -104,29 +103,25 @@ const App = (props) => {
                     </ul>
                 </ItemList>
                 <br />
-                <ItemInput
-                    type="text"
-                    onChange={e => setUserInput(e.target.value)}
-                    value={userInput}
-                />
-                <Button size="120px" height="45px" onClick={() => handleAdd()}>Add</Button> <br />
-                <Button size="280px" height="45px" onClick={() => handleSubmit()}>Submit</Button>
+                <ItemInput type="text" onChange={e => setUserInput(e.target.value)} value={userInput} />
+                <Button width="120px" height="45px" onClick={() => handleAdd()}>Add</Button> <br />
+                <Button width="280px" height="45px" onClick={() => handleSubmit()}>Submit</Button>
             </WishList>
         </Container>
     )
-}
+};
 
 const mapStateToProps = (state) => {
     return {
         wishList: state.wishList
-    };
+    }
 };
 
 const mapDispatchToProps = () => {
     return {
         addItem,
         deleteItem
-    };
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(App);

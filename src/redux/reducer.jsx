@@ -17,7 +17,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case DELETE_ITEM:
       return {
         wishList: state.wishList.filter(
-          item => item != action.payload
+          item => item !== action.payload
         )
       };
     default:
