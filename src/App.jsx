@@ -68,11 +68,19 @@ const Button = styled.button`
 const App = (props) => {
     const [userInput, setUserInput] = useState("");
     function handleAdd() {
-        props.addItem(userInput);
-        setUserInput("");
+        if (userInput.length == 0 || userInput == "") {
+            alert("ERROR\nInvalid Input - Empty String")
+        } else if (props.wishList.includes(userInput)) {
+            alert("ERROR\nInvalid Input - Item Exists")
+            setUserInput("");
+        } else {
+            props.addItem(userInput);
+            setUserInput("");
+        }
     }
     function handleDelete(listItem) {
-        props.deleteItem(listItem);}
+        props.deleteItem(listItem);
+    }
     return (
         <Container>
             <WishList>
@@ -91,7 +99,9 @@ const App = (props) => {
                 </ItemList>
                 <br />
                 <ItemInput
+                    type="text"
                     onChange={e => setUserInput(e.target.value)}
+                    value={userInput}
                 />
                 <Button size="120px" height="45px" onClick={() => handleAdd()}>Add</Button> <br />
                 <Button size="280px" height="45px">Submit</Button>
