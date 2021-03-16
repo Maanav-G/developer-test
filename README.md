@@ -2,7 +2,39 @@
 
 For this assignment, I built a basic application using React and Redux that allows users to add items (strings) to a "wish list" and then submit the list (to Santa).
 
-# Attributes 
+# Overview 
+
+## Actions
+The following additions were made in `reducer.jsx` for each of the following cases:
+* `ADD_ITEM`: `[...state.wishList, action.payload]` Allowing us to append the action's payload to the wishlist (the item we wish to add)
+* `DELETE_ITEM`: `state.wishList.filter(item => item !== action.payload)` Returns all items, except the action's payload item (the item we wish to remove)
+
+## Functions
+The following functions were implemented in `App.jsx` to handle the different actions:
+* `handleAdd()`: Checks for simple input validation (empty or duplicate string), and then adds the current value of `userInput` to wishlist by calling `props.addItem(userInput)`
+* `handleDelete(listItem)`: Simply deletes the item `listItem` from the wishlist by calling `props.deleteItem(listItem)`
+* `handleSubmit()`: Checks if the list is empty, otherwise submits the current state of the wishlist to 'Santa', which does not call any action, instead just pops an alert, and clears the list by calling `handleDelete(listItem)` using a simple for loop.
+
+## Elements
+The following is how each element functions:
+* `<ItemList>`: Calls `.map()` on the current state of the wishlist, which then wraps each item in `<li>` tag
+* Each item in list `<li>`: Onclick calls the `handleDelete(listItem)`, where `listItem` parameter is the item name 
+* `<ItemInput>`: Onchange, constantly, updates the user input value using `setUserInput`, with the current string inputted
+* Add `<Button>`: Onclick calls the `handleAdd()`
+* Submit `<Button>`: Onclick calls the `handleSubmit()`
+
+
+## Styling
+
+To stylize this application, I imported `Styled-Components` as it was marked as preferred in the guidelines. Using which, I created the following elements:
+* Container (div) - This is the main container of the wishlist and holds all the sub-elements
+  * Title (h3) - This is the header element for the main title ("MY WISHLIST")
+  * WishList (div) - This element holds all the items in the wish lists 
+    * ItemList (div) - This is a element within `WishList`, and holds the actual list of elements 
+  * ItemInput (input) - This is the input box for the user to enter their item.
+  * Button (button) - This element was created for the two buttons, where, the element takes a unique value for width and height 
+
+
 ## Dimension Deduction
 
 <img src="./src/assets/dimensionDeduction.svg" width="100%">
@@ -13,6 +45,12 @@ Based on the initial dimensions given of the width and height of the main contai
 <img src="./src/assets/colorPalette.svg" width="100%">
 
 Using a simple color picker tool, I deduced the 3 different colours used in the demo to ensure accuracy.
+
+## Assumptions Made
+* Implemented different `alerts` for each type of invalid input (empty string and duplicate item). 
+* For submit, I would've preferred to create a new `CLEAR_ALL` action instead of implementing a for loop that calls `deleteItem(item)` for each item on the list, where the `CLEAR_ALL` action would just return a empty list. However, based on the guidelines I understood that all code should be written inside of `App.jsx`
+* Implemented an `alert` when the user attempts to submit an empty list - However, no further actions are taken after, and the user is allowed to continue from where they last left off. 
+
 
 # Provided Instructions
 ## Demo

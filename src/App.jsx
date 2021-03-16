@@ -84,7 +84,6 @@ const App = (props) => {
             alert("Error\nInvalid Wish list - Empty List");
         }
 
-
     };
     return (
         <Container>
