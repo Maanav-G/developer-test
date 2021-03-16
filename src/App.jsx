@@ -71,6 +71,8 @@ const App = (props) => {
         props.addItem(userInput);
         setUserInput("");
     }
+    function handleDelete(listItem) {
+        props.deleteItem(listItem);}
     return (
         <Container>
             <WishList>
@@ -79,7 +81,7 @@ const App = (props) => {
                     <ul>
                         {props.wishList.map((listItem, listIndex) => {
                             return (
-                                <li onClick={() => console.log('clicked')}
+                                <li onClick={() => handleDelete(listItem)}
                                     key={listIndex}>
                                     {listItem}
                                 </li>
