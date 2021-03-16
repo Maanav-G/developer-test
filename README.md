@@ -13,7 +13,7 @@ The following additions were made in `reducer.jsx` for each of the following cas
 The following functions were implemented in `App.jsx` to handle the different actions:
 * `handleAdd()`: Checks for simple input validation (empty or duplicate string), and then adds the current value of `userInput` to wishlist by calling `props.addItem(userInput)`
 * `handleDelete(listItem)`: Simply deletes the item `listItem` from the wishlist by calling `props.deleteItem(listItem)`
-* `handleSubmit()`: Checks if the list is empty, otherwise submits the current state of the wishlist to 'Santa', which does not call any action, instead just pops an alert, and clears the list by calling `handleDelete(listItem)` using a simple for loop.
+* `handleSubmit()`: Checks if the list is not empty and submits the current state of the wishlist to 'Santa', which does not call any action, instead just pops an alert, and clears the list by calling `handleDelete(listItem)` using a simple for loop.
 
 ## Elements
 The following is how each element functions:

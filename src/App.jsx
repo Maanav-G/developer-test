@@ -60,28 +60,34 @@ const Button = styled.button`
 
 const App = (props) => {
     const [userInput, setUserInput] = useState("");
+    // Function to handle adding the current item to the wishlist
     function handleAdd() {
+        // Input validation for empty and duplicate string
         if (userInput.length === 0 || userInput === "") {
-            alert("Error\nInvalid Input - Empty String");
+            alert("Error\nInvalid Input - Empty String"); // Alerts ERROR
         } else if (props.wishList.includes(userInput)) {
-            alert("Error\nInvalid Input - Item Exists");
+            alert("Error\nInvalid Input - Item Exists"); // Alerts ERROR
             setUserInput("");
         } else {
             props.addItem(userInput);
             setUserInput("");
         }
     };
+    // Function to handle deleting of a specific element
     function handleDelete(listItem) {
         props.deleteItem(listItem);
     };
+    // Function to handle submitting the wishlist 
     function handleSubmit() {
+        // Validation for empty list
         if(props.wishList.length > 0){
             alert("Wish list submitted to Santa!");
             for (var item in props.wishList) {
                 handleDelete(props.wishList[item]);
             }
         } else {
-            alert("Error\nInvalid Wish list - Empty List");
+            // Alerts that list has been submitted
+            alert("Error\nInvalid Wish list - Empty List"); 
         }
 
     };
@@ -90,6 +96,7 @@ const App = (props) => {
             <WishList>
                 <Title>My Wishlist</Title>
                 <ItemList>
+                    {/* Maps each item from wishList into a unordered list*/}
                     <ul>
                         {props.wishList.map((listItem, listIndex) => {
                             return (
