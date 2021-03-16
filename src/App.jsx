@@ -39,7 +39,7 @@ const ItemList = styled.div`
         list-style-type: none;
         margin: 0;
         li {
-            margin-top: 5px;
+            margin-top: 7px;
         }
     }
 `;
@@ -81,6 +81,12 @@ const App = (props) => {
     function handleDelete(listItem) {
         props.deleteItem(listItem);
     }
+    function handleSubmit() {
+        alert("Wish list submitted to Santa!")
+        for(var item in props.wishList) {
+            handleDelete(props.wishList[item]);
+        }
+    }
     return (
         <Container>
             <WishList>
@@ -104,7 +110,7 @@ const App = (props) => {
                     value={userInput}
                 />
                 <Button size="120px" height="45px" onClick={() => handleAdd()}>Add</Button> <br />
-                <Button size="280px" height="45px">Submit</Button>
+                <Button size="280px" height="45px" onClick={() => handleSubmit()}>Submit</Button>
             </WishList>
         </Container>
     )
