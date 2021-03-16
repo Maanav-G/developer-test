@@ -4,12 +4,13 @@ For this assignment, I built a basic application using React and Redux that allo
 
 # Attributes 
 ## Dimension Deduction
-![](src/assets/dimensionDeduction.svg)
+
+<img src="./src/assets/dimensionDeduction.svg" width="100%">
 
 Based on the initial dimensions given of the width and height of the main container, I analyzed the screenshot of the demo based on relative sizes, and deduced the dimensions of all the other elements. Where for the width of each element I did: 400*((width of element in picture)/(width of container in picture)), and applied a similar formula for the height.
 
 ## Color Palette 
-![](src/assets/colorPalette.svg)
+<img src="./src/assets/colorPalette.svg" width="100%">
 
 Using a simple color picker tool, I deduced the 3 different colours used in the demo to ensure accuracy.
 
