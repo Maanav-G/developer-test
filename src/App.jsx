@@ -67,7 +67,9 @@ const Button = styled.button`
 
 const App = (props) => {
     const [userInput, setUserInput] = useState("");
-
+    function handleAdd() {
+        console.log("add")
+    }
     return (
         <Container>
             <WishList>
@@ -88,7 +90,7 @@ const App = (props) => {
                 <ItemInput
                     onChange={e => setUserInput(e.target.value)}
                 />
-                <Button size="120px" height="45px" onClick={() => console.log("add")}>Add</Button> <br />
+                <Button size="120px" height="45px" onClick={() => handleAdd()}>Add</Button> <br />
                 <Button size="280px" height="45px">Submit</Button>
             </WishList>
         </Container>
