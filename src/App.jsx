@@ -68,7 +68,8 @@ const Button = styled.button`
 const App = (props) => {
     const [userInput, setUserInput] = useState("");
     function handleAdd() {
-        console.log("add")
+        props.addItem(userInput);
+        setUserInput("");
     }
     return (
         <Container>
